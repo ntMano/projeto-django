@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block page_title %}
+    Lista de Requisições
+{% endblock page_title %}
+
+{% block content %}
+<h1>Lista de Requisições</h1>
+{% if solicitacao_list %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Inscrição</th>
+        <th scope="col">Email</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Local de Trabalho</th>
+        <th scope="col">Município</th>
+        <th scope="col">Data</th>
+        <th scope="col">Ações</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    {% for solicitacoes in solicitacao_list %}
+       
+        <tr>          
+        <th scope="row">{{solicitacoes.pk}}</td>
+        <td>{{solicitacoes.name}}</td>
+        <td>{{solicitacoes.cpf}}</td>
+        <td>{{solicitacoes.coren_number}}</td>
+        <td>{{solicitacoes.email}}</td>
+        <td>{{solicitacoes.cel}}</td>
+        <td>{{solicitacoes.workplace}}</td>
+        <td>{{solicitacoes.city}}</td>
+        <td>{{solicitacoes.data}}</td>
+
+        <td>
+            <a href="{% url "solicitacao_update" pk=solicitacoes.pk %}" class="btn btn-primary btn-sm">Editar</a>
+            <a href="#" class="btn btn-danger btn-sm">Deletar</a>
+            <a href="#" class="btn btn-warning btn-sm">Pendente</a>
+            <a href="#" class="btn btn-success btn-sm">Finalizar</a>
+            
+        </td>
+             
+      </tr>
+      
+    {% endfor %}
+</table>
+{% else %}
+    <p>Não há requisições</p>
+{% endif %}
+<table class="table">
+{% endblock content %}
